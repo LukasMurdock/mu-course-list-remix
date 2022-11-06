@@ -32,7 +32,7 @@ export function SearchSettings({
 	searchParams: {
 		termId: string
 		campusCode: string
-		query: string | undefined
+		query: string
 	}
 	terms: {
 		termId: string
@@ -51,8 +51,8 @@ export function SearchSettings({
 						...searchParams,
 						termId: term.termId,
 					})}`,
-					label: term.name,
-					current: term.current,
+					label: term.current ? `${term.name} (current)` : term.name,
+					current: term.termId === searchParams.termId,
 				}))}
 			/>
 			<Menu

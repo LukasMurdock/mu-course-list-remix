@@ -39,23 +39,33 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const url = new URL(request.url)
+	const fields = url.searchParams.get('fields')
 	const termId = url.searchParams.get('termId')
 	const campusCode = url.searchParams.get('campusCode')
+	const selectableTerms = await fetchSelectableTerms()
 
-	if (!termId || !campusCode) {
+	if (!termId || !campusCode || !fields) {
 		// Set default termId
 		if (!termId) {
-			const currentTerm = await getCurrentAcademicTerm()
-			url.searchParams.set('termId', currentTerm.data.termId)
+			const nextTerm =
+				selectableTerms[
+					selectableTerms.findIndex((term) => term.current) - 1
+				]
+			if (!nextTerm) throw new Error('No current term found')
+			// const currentTerm = await getCurrentAcademicTerm()
+			url.searchParams.set('termId', nextTerm.termId)
 		}
 		// Set default campus code
 		if (!campusCode) {
 			url.searchParams.set('campusCode', 'O')
 		}
+
+		// Set default fields
+		if (!fields) {
+			url.searchParams.append('fields', '')
+		}
 		return redirect(`/?${url.searchParams}`)
 	}
-
-	const selectableTerms = await fetchSelectableTerms()
 
 	const query = url.searchParams.get('q')
 
