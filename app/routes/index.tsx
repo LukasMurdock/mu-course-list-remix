@@ -39,7 +39,7 @@ type LoaderData = {
 
 export const loader: LoaderFunction = async ({ request }) => {
 	const url = new URL(request.url)
-	const fields = url.searchParams.get('fields')
+	const fields = url.searchParams.getAll('fields')
 	const termId = url.searchParams.get('termId')
 	const campusCode = url.searchParams.get('campusCode')
 	const selectableTerms = await fetchSelectableTerms()
@@ -61,9 +61,9 @@ export const loader: LoaderFunction = async ({ request }) => {
 		}
 
 		// Set default fields
-		if (!fields) {
-			url.searchParams.append('fields', '')
-		}
+		// if (!fields) {
+		// 	url.searchParams.append('fields', '')
+		// }
 		return redirect(`/?${url.searchParams}`)
 	}
 

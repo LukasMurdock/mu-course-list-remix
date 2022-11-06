@@ -22,6 +22,7 @@ export function SearchInput({
 				className="block w-full rounded-full border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
 				defaultValue={q}
 				placeholder="MKT 335, MKT 335C"
+				enterKeyHint="search"
 			/>
 			<p className="py-1.5 text-xs text-gray-500">
 				Comma separated search
