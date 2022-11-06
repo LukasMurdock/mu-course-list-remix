@@ -34,6 +34,17 @@ export default function App() {
 					</h1>
 				</nav>
 				<Outlet />
+				<footer className="m-auto flex max-w-prose justify-between pt-20 pb-4 text-sm font-medium text-gray-500">
+					<p>
+						Made by{' '}
+						<a
+							href="https://lukasmurdock.com/"
+							className="text-black underline"
+						>
+							Lukas Murdock
+						</a>
+					</p>
+				</footer>
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
