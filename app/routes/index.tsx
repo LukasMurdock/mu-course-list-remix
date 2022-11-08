@@ -1,6 +1,7 @@
 import { json, LoaderFunction, redirect } from '@remix-run/node'
 import {
 	Form,
+	ShouldReloadFunction,
 	useLoaderData,
 	useSearchParams,
 	useTransition,
@@ -9,16 +10,18 @@ import { SearchInput } from '~/components/search/SearchInput'
 import { SearchResults } from '~/components/search/SearchResults'
 import { SearchSettings } from '~/components/search/SearchSettings'
 import { Skeleton } from '~/components/Skeleton'
-import {
-	getCurrentAcademicTerm,
-	searchMiamiCourses,
-} from '~/lib/ws.miamioh.edu/api'
+import { searchMiamiCourses } from '~/lib/ws.miamioh.edu/api'
 import { CourseSections } from '~/lib/ws.miamioh.edu/api-types'
 import {
 	fetchSelectableTerms,
 	ParseError,
 	partitionedParseCourses,
 } from '~/lib/ws.miamioh.edu/wrapper'
+
+// https://remix.run/docs/en/v1/api/conventions#unstable_shouldreload
+// export const unstable_shouldReload: ShouldReloadFunction = ({ params }) => {
+// 	return !!params.fields
+// }
 
 export type Result =
 	| {
@@ -61,9 +64,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 		}
 
 		// Set default fields
-		// if (!fields) {
-		// 	url.searchParams.append('fields', '')
-		// }
+		if (!fields.length) {
+			url.searchParams.append('fields', 'title')
+			url.searchParams.append('fields', 'description')
+			url.searchParams.append('fields', 'courseId')
+		}
 		return redirect(`/?${url.searchParams}`)
 	}
 
