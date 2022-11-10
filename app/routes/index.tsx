@@ -130,7 +130,9 @@ export default function Index() {
 	const termId = searchParams.get('termId')
 	const campusCode = searchParams.get('campusCode')
 	const query = searchParams.get('q')
-	const isLoading = transition.type === 'loaderSubmission'
+	const isLoading = transition.state === 'loading'
+	const isSubmitting = transition.state === 'submitting'
+	// const isLoading = transition.type === 'loaderSubmission'
 
 	if (!termId || !campusCode) throw new Error('No params')
 
@@ -154,9 +156,14 @@ export default function Index() {
 						}}
 					/>
 				</Form>
-				{isLoading ? <Skeleton rounded="full">Loading</Skeleton> : null}
 				{loaderData.results ? (
-					<SearchResults results={loaderData.results} />
+					isLoading || isSubmitting ? (
+						<Skeleton rounded="md">
+							<div className="p-3" />
+						</Skeleton>
+					) : (
+						<SearchResults results={loaderData.results} />
+					)
 				) : null}
 			</div>
 		</div>

@@ -31,7 +31,7 @@ export function SearchInput({
 				name="q"
 				autoComplete="off"
 				id="search-course"
-				className="block w-full rounded-full border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
+				className="block w-full uppercase caret-red-500 rounded-full border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
 				defaultValue={q}
 				placeholder="MKT 335, MKT 335 C"
 				enterKeyHint="search"
