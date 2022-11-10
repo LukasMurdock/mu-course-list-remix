@@ -53,7 +53,7 @@ function CourseCard({
 		fields.push('enrollmentCountAvailable', '')
 	}
 	if (
-		result?.data?.courseSections ||
+		!result?.data?.courseSections ||
 		result?.data?.courseSections?.length === 0
 	) {
 		return (
