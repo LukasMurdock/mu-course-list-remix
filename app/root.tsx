@@ -27,7 +27,7 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body className="p-4">
 				<nav className="m-auto flex max-w-prose justify-between py-4">
 					<h1 className="font-bold">
 						<NavLink to={'/'}>MU Course List</NavLink>

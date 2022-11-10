@@ -46,7 +46,7 @@ export function SearchSettings({
 	const readableQueriedTerm = readableTermId(searchParams.termId)
 
 	return (
-		<div className="flex space-x-2">
+		<div className="flex sm:space-x-2 flex-col space-y-2 sm:space-y-0 sm:flex-row">
 			<Menu
 				title={readableQueriedTerm.full}
 				options={terms.map((term) => {
