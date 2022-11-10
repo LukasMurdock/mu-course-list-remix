@@ -12,11 +12,18 @@ function readableTermId(string: string) {
 	const seasonCode = Number(string.substring(4, 6)) // 10
 	const startYear = endYear - 1 // 2022
 
+	const seasonCodeIndex = Object.values(TermMap).findIndex(
+		(codeMap) => codeMap === seasonCode
+	)
+
+	console.log({ seasonCodeIndex })
+
 	const readableSeason = Object.entries(TermMap).find(
 		(term) => term[1] === seasonCode
 	)?.[0]
 
-	if (!readableSeason) throw new Error('Could not parse Term ID')
+	if (!readableSeason)
+		throw new Error(`Could not parse Term season from: ${string}`)
 
 	return {
 		seasonString: readableSeason,
