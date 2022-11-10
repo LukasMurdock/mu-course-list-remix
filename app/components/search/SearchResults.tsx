@@ -52,7 +52,10 @@ function CourseCard({
 	if (fields.length === 0) {
 		fields.push('enrollmentCountAvailable', '')
 	}
-	if (result?.data?.courseSections?.length === 0) {
+	if (
+		result?.data?.courseSections ||
+		result?.data?.courseSections?.length === 0
+	) {
 		return (
 			<div className="rounded-md border p-4">
 				<p className="truncate text-sm">
