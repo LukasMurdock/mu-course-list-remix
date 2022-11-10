@@ -108,6 +108,10 @@ export const loader: LoaderFunction = async ({ request }) => {
 		}
 	})
 
+	successfulQueries.forEach((query) => {
+		console.log(query.query, 'length', query.data.courseSections.length)
+	})
+
 	return json<LoaderData>(
 		{
 			terms: selectableTerms,
