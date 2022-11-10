@@ -17,6 +17,7 @@ function readableTermId(string: string) {
 	)
 
 	console.log({ seasonCodeIndex })
+	console.log(Object.values(TermMap)[seasonCodeIndex])
 
 	const readableSeason = Object.entries(TermMap).find(
 		(term) => term[1] === seasonCode
