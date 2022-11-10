@@ -51,12 +51,14 @@ export function SearchSettings({
 	}[]
 }) {
 	const [params] = useSearchParams()
-	const readableQueriedTerm = readableTermId(searchParams.termId)
+	console.log('termId string', searchParams.termId)
+	// const readableQueriedTerm = readableTermId(searchParams.termId)
 
 	return (
 		<div className="flex sm:space-x-2 flex-col space-y-2 sm:space-y-0 sm:flex-row">
 			<Menu
-				title={readableQueriedTerm.full}
+				title={'Select Term'}
+				// title={readableQueriedTerm.full}
 				options={terms.map((term) => {
 					const newParams = params
 					newParams.set('termId', term.termId)
